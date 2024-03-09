@@ -1,0 +1,154 @@
+body {
+    margin: 0 0 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Homepage styles */
+.explore {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Search input styles */
+.search-input {
+    width: 300px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 50px 0 0 0;
+    align-self: center;
+
+    &:focus {
+        border-color: #C6A477;
+        outline: none;
+    }
+}
+
+/* Search button styles */
+.search-button {
+    margin-left: 10px;
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: mediumpurple;
+    }
+}
+
+
+.container:hover .image {
+    opacity: 0.3;
+}
+
+.container:hover .middle {
+    opacity: 1;
+}
+
+.text {
+    background-color: #04AA6D;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+.explore_image {
+    opacity: 1;
+    display: block;
+    /*width: 300px;*/
+    height: 450px;
+    object-fit: cover;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    width: 100%; /* Set the container width to 100% */
+    /*height: 100%;*/
+
+}
+
+.movies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 20px 5%;
+    overflow: hidden;
+}
+
+.movies_container {
+    display: flex;
+    width: 100%; /* Set the container width to 100% */
+    height: 100%; /* Set the container height to 100% of the parent (carousel-viewport) */
+    transition: transform 0.5s;
+    margin: 2% 3% 0 0;
+}
+
+.container:hover .explore_image {
+    opacity: 0.3;
+}
+
+.container:hover .explore_middle {
+    opacity: 1;
+}
+
+.explore_middle {
+    opacity
+    : 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the middle content vertically and horizontally */
+    text-align: center;
+}
+
+.explore_movie button {
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    width: 300px;
+    height: 30px;
+    /*margin-right: 75px; !* Set a dynamic margin based on screen size *!*/
+    border-radius: 6px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: tan;
+    }
+
+    &:active {
+        background-color: tan;
+    }
+}
+
+
+@media screen and (max-width: 1600px) {
+    .movies_container {
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        justify-content: center; /* Center items horizontally */
+    }
+
+    .container {
+        flex: 0 0 calc(25% - 20px); /* Four items in a row, adjust as needed */
+        margin: 10px; /* Add some spacing between items */
+    }
+
+    .explore_movie button {
+        margin-right: 0; /* Remove the margin for smaller screens */
+    }
+
+}
