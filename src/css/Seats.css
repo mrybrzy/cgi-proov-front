@@ -1,0 +1,133 @@
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button {
+    margin-left: 10px;
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 35px;
+    width: 35px;
+}
+.buy-button {
+    margin-left: 10px;
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 35px;
+    width: 100px;
+}
+
+/* Style for booked seats */
+.button.booked {
+    background-color: red;
+    cursor: not-allowed;
+
+}
+
+/* Style for available seats */
+.button.available {
+    background-color: green;
+    cursor: pointer;
+}
+.button.clicked, button.selected {
+    background-color: rgba(255, 196, 0, 0.66); /* Clicked seat color (yellow) */
+}
+/* Seats.css */
+
+/* Style for the input element */
+input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 70px;
+    width: 70px;
+}
+
+
+.hotel-view-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+.hotel-view-image img {
+    max-width: 100%;
+    height: 450px;
+    width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-info {
+    margin-left: 20px;
+}
+
+.hotel-info h2 {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.hotel-info p {
+    margin-top: 10px;
+    color: #050505;
+}
+.label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.seats-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.seats-container {
+    flex: 1;
+}
+
+.input-container {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 300px;
+    margin-right: 50px;
+
+}
+.select-seats {
+    align-items: end;
+    margin-left: 70px;
+    margin-top: 10px;
+
+}
+.search-buy-button {
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    width: 100px;
+}
