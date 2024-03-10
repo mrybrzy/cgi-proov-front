@@ -14,7 +14,7 @@ body {
     position: sticky;
     align-items: center;
     justify-content: center;
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
     width: 100%;
     overflow: hidden;
 }
@@ -44,10 +44,7 @@ body {
     padding: 8px 10px;
     cursor: pointer;
     border-radius: 4px;
-
-    &:hover {
-        background-color: mediumpurple;
-    }
+    height: 30px;
 }
 
 
@@ -77,6 +74,15 @@ body {
     width: 100%; /* Set the container width to 100% */
     /*height: 100%;*/
 
+}
+.search-select {
+    width: 300px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 50px 0 0 0;
+    align-self: center;
 }
 
 .movies {
