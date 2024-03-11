@@ -151,6 +151,7 @@ export const Home = () => {
                                     <p><span className="label">Language:</span> {movie.language}</p>
                                     <p><span className="label">Start Time:</span> {movie.startTime}</p>
                                     <p><span className="label">Run Time:</span> {movie.runTime}</p>
+                                    <p><span className="label">Price:</span> {movie.price}</p>
                                     <p style={{marginTop: 40}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
                                 </div>

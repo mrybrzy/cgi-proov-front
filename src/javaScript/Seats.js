@@ -10,6 +10,7 @@ export const SeatsInMovie = () => {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seatQuantity, setSeatQuantity] = useState(1); // Default quantity is 1
     const navigate = useNavigate();
+    let [seatPrice, setSeatPrice] = useState(7)
 
     useEffect(() => {
         axios.get(`/public/movie/${movieId}`).then((result) => {
@@ -19,7 +20,9 @@ export const SeatsInMovie = () => {
         axios.get(`/public/movie/id/${movieId}`).then((result) => {
             setSeatsData(result.data);
         });
+
     }, [movieId]);
+
 
     const seatsPerRow = 10;
 
@@ -47,13 +50,13 @@ export const SeatsInMovie = () => {
     const handleBuyClick = (movie) => {
         console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
-            // Redirect to the booking confirmation page with the selected room and dates
-
+            console.log(selectedSeats)
             localStorage.setItem("movieId", movieId);
             localStorage.setItem("seats", selectedSeats);
-            navigate(`/`);
+            localStorage.setItem("price", seatPrice);
+            navigate(`/confirm`);
         } else {
-            navigate('/');
+            navigate('/login');
         }
     }
     const handleSeatQuantityChange = (newValue) => {
@@ -63,7 +66,8 @@ export const SeatsInMovie = () => {
     };
 
     const handleSelectSeats = () => {
-        console.log(seatQuantity)
+        console.log(selectedSeats)
+
         // Send selected seats data to the backend
         axios.get(`/public/movie/${movieId}/${seatQuantity}`, {seatQuantity, movieId})
             .then(response => {
@@ -75,7 +79,16 @@ export const SeatsInMovie = () => {
                 // Handle errors
                 console.error(error);
             });
+        handlePriceChange()
+
+
     };
+
+    const handlePriceChange = () => {
+        axios.get(`/public/price/${seatQuantity}`).then((result) => {
+            setSeatPrice(result.data);
+        });
+    }
 
 
     return (
@@ -83,19 +96,20 @@ export const SeatsInMovie = () => {
             <div className="movie-view-container">
                 {movieData && (
                     <div className="movie-view-image-seats">
-                        <img src={movieData.image} alt={movieData.movie_name} />
+                        <img src={movieData.image} alt={movieData.movie_name}/>
                     </div>
                 )}
                 <div className="movie-info">
                     {movieData && (
                         <>
-                            <h1 style={{ marginBottom: 50 }}>{movieData.movieName}</h1>
+                            <h1 style={{marginBottom: 50}}>{movieData.movieName}</h1>
                             <p><span className="label">Genre:</span> {movieData.genre}</p>
                             <p><span className="label">Age Limit:</span> {movieData.ageLimit}</p>
                             <p><span className="label">Language:</span> {movieData.language}</p>
                             <p><span className="label">Start Time:</span> {movieData.startTime}</p>
                             <p><span className="label">Run Time:</span> {movieData.runTime}</p>
-                            <p style={{ marginTop: 80 }}><span className="label">Description</span></p>
+                            <p><span className="label">Price:</span> {seatPrice}</p>
+                            <p style={{marginTop: 80}}><span className="label">Description</span></p>
                             <p>{movieData.description}</p>
                         </>
                     )}
@@ -105,7 +119,7 @@ export const SeatsInMovie = () => {
             <div className="seats-input-container">
                 <div className="seats-container">
                     {rows.map((row, rowIndex) => (
-                        <div className="movies" key={rowIndex} style={{ display: "flex" }}>
+                        <div className="movies" key={rowIndex} style={{display: "flex"}}>
                             {row.map((seat, index) => (
                                 <button
                                     key={index}
@@ -129,9 +143,13 @@ export const SeatsInMovie = () => {
                         onChange={(e) => setSeatQuantity(parseInt(e.target.value, 10))}
                     />
                     <div className="select-seats">
-                        <button style={{marginRight: 15}} className="button" onClick={() => handleSeatQuantityChange(seatQuantity - 1)}>-</button>
+                        <button style={{marginRight: 15}} className="button"
+                                onClick={() => handleSeatQuantityChange(seatQuantity - 1)}>-
+                        </button>
                         <button className="button" onClick={() => handleSeatQuantityChange(seatQuantity + 1)}>+</button>
-                        <button style={{marginTop: 30}} className="search-buy-button" onClick={handleSelectSeats}>Select Seats</button>
+                        <button style={{marginTop: 30}} className="search-buy-button" onClick={handleSelectSeats}>Select
+                            Seats
+                        </button>
                         <button className="search-buy-button" onClick={handleBuyClick}>buy</button>
                     </div>
                 </div>

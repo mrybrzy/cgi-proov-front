@@ -28,7 +28,7 @@ export const Register = () => {
     };
 
     const handleRegister = async () => {
-        console.log(username)
+
         await axios.post('/public/register', {
             "username": username,
             "name": name,
