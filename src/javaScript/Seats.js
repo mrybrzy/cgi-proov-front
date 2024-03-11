@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useParams, useNavigate} from "react-router";
 import '../css/Seats.css';
+import {Header} from "./Header";
 
 export const SeatsInMovie = () => {
     const [seatsData, setSeatsData] = useState([]);
@@ -93,6 +94,7 @@ export const SeatsInMovie = () => {
 
     return (
         <div className="explore">
+            <Header/>
             <div className="movie-view-container">
                 {movieData && (
                     <div className="movie-view-image-seats">

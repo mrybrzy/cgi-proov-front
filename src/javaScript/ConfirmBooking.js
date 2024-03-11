@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import '../css/ConfirmBooking.css'; // Import the external CSS file
 import {useNavigate} from "react-router-dom";
+import {Header} from "./Header";
 
 export const ConfirmBooking = () => {
     const navigate = useNavigate();
@@ -55,6 +56,7 @@ export const ConfirmBooking = () => {
 
     return (
         <div>
+            <Header/>
             <div style={{marginBottom: 265}}>
                 <div className="title">
                     <h2 style={{fontSize: 25, paddingLeft: 30}}>Please check details before confirming:</h2>

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import '../css/Home.css'
 import {useNavigate} from "react-router-dom";
+import {Header} from "./Header";
 
 
 export const Home = () => {
@@ -71,6 +72,7 @@ export const Home = () => {
 
     return (
         <div className='explore'>
+            <Header/>
             <form
                 id="search-input"
                 onSubmit={(e) => {
