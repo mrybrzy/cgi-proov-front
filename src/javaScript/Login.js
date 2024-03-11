@@ -32,8 +32,6 @@ export const Login = () => {
     }, []);
 
     const handleLogin = async () => {
-        console.log(username)
-        console.log(password)
         await axios.post('/public/login', {
             "username": username,
             "password": password,

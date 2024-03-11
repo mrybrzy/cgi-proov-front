@@ -5,6 +5,7 @@ import {Home} from "./javaScript/Home";
 import {SeatsInMovie} from "./javaScript/Seats";
 import {Login} from "./javaScript/Login";
 import {Register} from "./javaScript/Register";
+import {ConfirmBooking} from "./javaScript/ConfirmBooking";
 
 
 
@@ -16,6 +17,7 @@ export const ReactRouter = () => {
                 <Route path="/movie/:movieId" element={<SeatsInMovie/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/confirm" element={<ConfirmBooking/>}/>
             </Routes>
         </BrowserRouter>
     )
