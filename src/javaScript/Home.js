@@ -14,7 +14,7 @@ export const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("/home")
+        axios.get("/public/home")
             .then((result) => {
                 setData(result.data);
                 console.log(result.data);
@@ -25,7 +25,7 @@ export const Home = () => {
     }, []);
 
     const searchForMovie = () => {
-        let url = `/search`;
+        let url = `/public/search`;
 
         if (Array.isArray(genre) && genre.length > 0) {
             url += `/genre/${genre.join(',')}`;
@@ -75,17 +75,9 @@ export const Home = () => {
                 id="search-input"
                 onSubmit={(e) => {
                     e.preventDefault();
-                    // searchForMovie();
                 }}
             >
-                {/*<input*/}
-                {/*    type="text"*/}
-                {/*    id="movie-input"*/}
-                {/*    className="search-input"*/}
-                {/*    placeholder="Search"*/}
-                {/*    value={movieName}*/}
-                {/*    onChange={(e) => setMovieName(e.target.value)}*/}
-                {/*/>*/}
+
                 <select
                     id="age-select"
                     className="search-select"
@@ -147,9 +139,21 @@ export const Home = () => {
             <div className="movies">
                 <div className="movies_container">
                     {data.map((movie, index) => (
-                        <div key={index} className="container">
-                            <div className="explore_movie">
-                                <img src={movie.image} alt={movie.movieName} onClick={() => handleMovieClick(movie)} className="explore_image"/>
+                        <div onClick={() => handleMovieClick(movie)} className="movie-view-movie-card" key={index}>
+                            <div  className="container">
+                                <img src={movie.image} alt={movie.movieName} className="explore_image"/>
+                            </div>
+                            <div className="movie-info">
+                                <h2>{movie.movieName}</h2>
+                                <div style={{marginLeft: 10}}>
+                                    <p><span className="label">Genre:</span> {movie.genre}</p>
+                                    <p><span className="label">Age Limit:</span> {movie.ageLimit}</p>
+                                    <p><span className="label">Language:</span> {movie.language}</p>
+                                    <p><span className="label">Start Time:</span> {movie.startTime}</p>
+                                    <p><span className="label">Run Time:</span> {movie.runTime}</p>
+                                    <p style={{marginTop: 40}}><span className="label">Description</span></p>
+                                    <p>{movie.description}</p>
+                                </div>
 
                             </div>
                         </div>

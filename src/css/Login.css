@@ -1,0 +1,75 @@
+/* Style the overall login container */
+.login-container {
+    display: flex;
+    flex-direction: column; /* Adjust to stack header and login vertically */
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2f2f2; /* Change this color to your desired background color */
+    overflow: hidden;
+}
+
+/* Style the login frame */
+.login-frame {
+    text-align: center;
+    background-color: #fff;
+    padding: 0 0 0 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 380px; /* Adjust the width as needed */
+    height: auto; /* Remove the fixed height to allow it to adjust based on content */
+    margin: 40px 0 0 0; /* Add some space between the header and login section */
+}
+
+/* Rest of the styles remain the same */
+.login-image {
+    width: 100%;
+    margin: 0 0 0 0;
+    border-radius: 5px 5px 0 0; /* Rounded corners only at the top */
+}
+
+.input-style-login {
+    width: 300px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.button-style-login {
+    background-color: #C6A477; /* Change this color to your desired button background color */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 335px;
+    margin: 10px 0 20px 0;
+}
+
+.link-style {
+    color: #C6A477; /* Change this color to your link color */
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.text-login {
+    margin: 10px 0 10px 0;
+}
+.button-style-login-register {
+    background-color: #C6A477; /* Change this color to your desired button background color */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 335px;
+    margin: 10px 0 15px 0;
+}
+.not-member {
+    margin-bottom: 30px;
+}

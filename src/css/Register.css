@@ -1,0 +1,97 @@
+/* Style the overall registration container */
+.register-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Change this color to your desired background color */
+}
+
+/* Style the registration frame container */
+.register-frame-container {
+    display: flex;
+    align-items: center;
+    margin: 20px; /* Add margin to create space between frames and edges */
+}
+
+/* Style the left column for the image */
+.left-column {
+    flex: 1;
+    flex-basis: 33%; /* Set the left column to one-third of the container */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; /* Adjust alignment to center the image vertically */
+    margin-right: 20px;
+}
+
+/* Style the right column for the registration frame */
+.right-column {
+    flex: 2;
+    flex-basis: 66%; /* Set the right column to two-thirds of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+/* Style the registration frame */
+.register-frame {
+    height: 500px;
+    width: 400px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Add margin to create space between frames and edges */
+
+}
+
+/* Style the registration image */
+.register-image {
+    max-width: 550px;
+    height: 500px;
+    border-radius: 5px;
+    margin: 20px 0 0 0;
+}
+
+/* Style the "Register" title */
+h2 {
+    margin: 10px 10px 20px 10px;
+}
+
+
+
+.input-style-register {
+    width: 300px; /* Set the fixed width for other inputs */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+.button-style-register {
+    background-color: #C6A477; /* Change this color to your desired button background color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 325px;
+    margin: 10px;
+}
+
+/* Style the "Already a member? Sign up" text */
+p {
+    margin: 10px 0;
+}
+
+/* Style the "Sign up" link */
+.link-style {
+    color: #C6A477; /* Change this color to your link color */
+    cursor: pointer;
+    text-decoration: underline;
+}
