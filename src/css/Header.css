@@ -1,0 +1,114 @@
+/* Header container styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    height: 50px;
+    background-color: #7097A8; /* Replace with your desired background color */
+}
+
+/* Heading styles */
+.header-heading {
+    text-align: center;
+    color: #fff; /* Change the text color to your preference */
+    margin: 0 40px 0 40px;
+}
+
+/* Header buttons container styles */
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Center buttons vertically */
+    margin: 0 0 0 0; /* Push the buttons to the right */
+}
+
+/* Header button styles */
+.icon-button-header {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: static;
+}
+
+.icon-button-header img {
+    max-width: 30px;
+    margin-right: 20px;
+    height: auto;
+}
+
+/* Menu button and menu content styles (hidden by default) */
+.menu-button {
+    display: none;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column; /* Display text under icons */
+    align-items: center; /* Center text and icon vertically */
+}
+
+.icon-button img {
+    max-width: 30px;
+    height: auto;
+    margin-left: 20px;
+}
+
+/* Adjust text size and spacing under menu buttons */
+.icon-button span {
+    font-size: 14px; /* Adjust the font size to your preference */
+    margin-top: 5px; /* Increase the spacing between icon and text */
+}
+
+/* Icon button menu content styles */
+.menu-content {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: #7097A8; /* Replace with your desired background color */
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    z-index: 1;
+    display: none;
+}
+
+/* Icon button menu button styles */
+.icon-button-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    font-size: 20px;
+    color: #fff; /* Change the text color to your preference */
+}
+
+.icon-button-menu img {
+    max-width: 24px;
+    padding-right: 20px;
+    height: auto;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .header-buttons {
+        display: none;
+    }
+
+    .menu-button {
+        display: flex;
+    }
+
+    /* Show the menu content when hovering over the icon button */
+    .menu-button:hover .menu-content {
+        display: flex;
+    }
+}

@@ -1,0 +1,49 @@
+/* src/css/Profile.css */
+
+.profile {
+    padding: 20px;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+    align-items: center;
+    text-align: center; /* Center the content inside .profile */
+}
+
+.booking-container {
+    margin-top: 30px;
+}
+
+.booking-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 87%;
+    text-align: left;
+    margin-left: 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    margin-left: auto; /* Push the button to the right */
+    cursor: pointer;
+    background-color: #C6A477;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: tan;
+    }
+
+    &:active {
+        background-color: tan;
+    }
+}
