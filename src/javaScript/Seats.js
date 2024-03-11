@@ -12,11 +12,11 @@ export const SeatsInMovie = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`/movie/${movieId}`).then((result) => {
+        axios.get(`/public/movie/${movieId}`).then((result) => {
             setMovieData(result.data);
         });
 
-        axios.get(`/movie/id/${movieId}`).then((result) => {
+        axios.get(`/public/movie/id/${movieId}`).then((result) => {
             setSeatsData(result.data);
         });
     }, [movieId]);
@@ -44,7 +44,7 @@ export const SeatsInMovie = () => {
         }
     };
 
-    const handleBuyClick = (hotel) => {
+    const handleBuyClick = (movie) => {
         console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
             // Redirect to the booking confirmation page with the selected room and dates
@@ -65,7 +65,7 @@ export const SeatsInMovie = () => {
     const handleSelectSeats = () => {
         console.log(seatQuantity)
         // Send selected seats data to the backend
-        axios.get(`/movie/${movieId}/${seatQuantity}`, {seatQuantity, movieId})
+        axios.get(`/public/movie/${movieId}/${seatQuantity}`, {seatQuantity, movieId})
             .then(response => {
                 // Handle the response from the backend
                 console.log(response.data);
@@ -80,13 +80,13 @@ export const SeatsInMovie = () => {
 
     return (
         <div className="explore">
-            <div className="hotel-view-container">
+            <div className="movie-view-container">
                 {movieData && (
-                    <div className="hotel-view-image">
-                        <img src={movieData.image} alt={movieData.movie_name} className="explore_image" />
+                    <div className="movie-view-image-seats">
+                        <img src={movieData.image} alt={movieData.movie_name} />
                     </div>
                 )}
-                <div className="hotel-info">
+                <div className="movie-info">
                     {movieData && (
                         <>
                             <h1 style={{ marginBottom: 50 }}>{movieData.movieName}</h1>
@@ -94,6 +94,7 @@ export const SeatsInMovie = () => {
                             <p><span className="label">Age Limit:</span> {movieData.ageLimit}</p>
                             <p><span className="label">Language:</span> {movieData.language}</p>
                             <p><span className="label">Start Time:</span> {movieData.startTime}</p>
+                            <p><span className="label">Run Time:</span> {movieData.runTime}</p>
                             <p style={{ marginTop: 80 }}><span className="label">Description</span></p>
                             <p>{movieData.description}</p>
                         </>

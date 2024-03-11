@@ -56,30 +56,31 @@ input {
 }
 
 
-.hotel-view-container {
+.movie-view-container {
     display: flex;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 
-.hotel-view-image img {
+.movie-view-image-seats img {
     max-width: 100%;
     height: 450px;
-    width: 500px;
+    width: 300px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hotel-info {
-    margin-left: 20px;
+.movie-info {
+    margin-left: 60px;
 }
 
-.hotel-info h2 {
+.movie-info h2 {
     margin-bottom: 10px;
     color: #000000;
 }
 
-.hotel-info p {
+.movie-info p {
     margin-top: 10px;
     color: #050505;
 }
