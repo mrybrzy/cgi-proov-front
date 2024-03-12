@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-import '../css/ConfirmBooking.css'; // Import the external CSS file
+import '../css/ConfirmBooking.css';
 import {useNavigate} from "react-router-dom";
 import {Header} from "./Header";
 
@@ -24,7 +24,6 @@ export const ConfirmBooking = () => {
     };
 
     const handleBookingSave = async () => {
-        console.log(seatId)
         await axios.post('/book', {
             "client": client,
             "movieId": movieId,
@@ -45,8 +44,6 @@ export const ConfirmBooking = () => {
     };
 
     const handleCancel = () => {
-        // Implement your cancel logic here
-        // For example, you can navigate the user back to a previous page
         navigate(`/movie/${movieId}`);
     };
 
@@ -79,10 +76,9 @@ export const ConfirmBooking = () => {
                     </div>
                 </div>
                 <div className="buttons">
-                    <button className="confirm-book-button" onClick={handleBookingSave}>Confirm booking</button>
+                    <button className="confirm-book-button" onClick={handleBookingSave}>Confirm tickets</button>
                     <button className="confirm-book-button" onClick={handleCancel}>Cancel</button>
                 </div>
-                {/*</div>*/}
             </div>
         </div>
     );

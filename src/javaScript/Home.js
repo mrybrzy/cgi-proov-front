@@ -7,12 +7,12 @@ import {Header} from "./Header";
 
 export const Home = () => {
     const [data, setData] = useState([]);
-    const [movieName, setMovieName] = useState("");
     const [genre, setGenre] = useState([]);
     const [age, setAge] = useState("");
     const [startTime, setStartTime] = useState("");
     const [language, setLanguage] = useState("");
     const navigate = useNavigate();
+    let [movieRecommendation, setRecommendation] = useState([])
 
     useEffect(() => {
         axios.get("/public/home")
@@ -23,7 +23,22 @@ export const Home = () => {
             .catch((error) => {
                 console.log(error);
             });
+        handleRecommendation();
     }, []);
+
+    const handleRecommendation = () => {
+        const username = localStorage.getItem("username");
+        if (username) {
+            fetch(`/recommendation/${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+                .then((response) => response.json())
+                .then((data) => setRecommendation(data))
+                .catch((error) => console.error('Error fetching user data:', error));
+        }
+    }
 
     const searchForMovie = () => {
         let url = `/public/search`;
@@ -40,8 +55,6 @@ export const Home = () => {
         if (typeof language === 'string' && language.trim() !== "") {
             url += `/language/${language.trim()}`;
         }
-        console.log(url)
-
         axios.get(url)
             .then((result) => {
                 if (Array.isArray(result.data) && result.data.length > 0) {
@@ -56,12 +69,9 @@ export const Home = () => {
     };
 
     const handleGenreChange = (selectedGenre) => {
-        // Check if the genre is already selected
         if (genre.includes(selectedGenre)) {
-            // If selected, remove it from the array
             setGenre((prevGenre) => prevGenre.filter((g) => g !== selectedGenre));
         } else {
-            // If not selected, add it to the array
             setGenre((prevGenre) => [...prevGenre, selectedGenre]);
         }
     };
@@ -118,7 +128,6 @@ export const Home = () => {
                 <button className="search-button" onClick={searchForMovie}>
                     Search
                 </button>
-                {/* Replace the existing genre select with the following */}
                 <div className="dropdown-container">
 
                     <div id="genre-dropdown" className="dropdown-content">
@@ -142,7 +151,7 @@ export const Home = () => {
                 <div className="movies_container">
                     {data.map((movie, index) => (
                         <div onClick={() => handleMovieClick(movie)} className="movie-view-movie-card" key={index}>
-                            <div  className="container">
+                            <div className="container">
                                 <img src={movie.image} alt={movie.movieName} className="explore_image"/>
                             </div>
                             <div className="movie-info">
@@ -156,8 +165,10 @@ export const Home = () => {
                                     <p><span className="label">Price:</span> {movie.price}</p>
                                     <p style={{marginTop: 40}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
+                                    {movieRecommendation[index] && (
+                                        <h3 style={{marginTop: 30}}><span className="label">Recommendation</span>{movieRecommendation[index]}%</h3>
+                                    )}
                                 </div>
-
                             </div>
                         </div>
                     ))}

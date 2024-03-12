@@ -9,7 +9,7 @@ export const SeatsInMovie = () => {
     const [movieData, setMovieData] = useState([]);
     const {movieId} = useParams();
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [seatQuantity, setSeatQuantity] = useState(1); // Default quantity is 1
+    const [seatQuantity, setSeatQuantity] = useState(1);
     const navigate = useNavigate();
     let [seatPrice, setSeatPrice] = useState(7)
 
@@ -37,11 +37,9 @@ export const SeatsInMovie = () => {
             const isSeatClicked = selectedSeats.includes(seat.seatNumber);
 
             if (isSeatClicked) {
-                // If seat is already clicked, unselect it
                 const updatedSelectedSeats = selectedSeats.filter(clickedSeat => clickedSeat !== seat.seatNumber);
                 setSelectedSeats(updatedSelectedSeats);
             } else if (selectedSeats.length < seatQuantity) {
-                // If seat is not clicked and the selected seats are less than the specified quantity, select it
                 const updatedSelectedSeats = [...selectedSeats, seat.seatNumber];
                 setSelectedSeats(updatedSelectedSeats);
             }
@@ -49,9 +47,7 @@ export const SeatsInMovie = () => {
     };
 
     const handleBuyClick = (movie) => {
-        console.log(localStorage.getItem('token'));
         if (localStorage.getItem('token')) {
-            console.log(selectedSeats)
             localStorage.setItem("movieId", movieId);
             localStorage.setItem("seats", selectedSeats);
             localStorage.setItem("price", seatPrice);
@@ -61,23 +57,17 @@ export const SeatsInMovie = () => {
         }
     }
     const handleSeatQuantityChange = (newValue) => {
-        // Ensure that the new value is within the range [1, availableSeatsQuantity]
         const newQuantity = Math.max(1, Math.min(availableSeatsQuantity, newValue));
         setSeatQuantity(newQuantity);
     };
 
     const handleSelectSeats = () => {
-        console.log(selectedSeats)
-
-        // Send selected seats data to the backend
         axios.get(`/public/movie/${movieId}/${seatQuantity}`, {seatQuantity, movieId})
             .then(response => {
-                // Handle the response from the backend
                 console.log(response.data);
                 setSelectedSeats(response.data)
             })
             .catch(error => {
-                // Handle errors
                 console.error(error);
             });
         handlePriceChange()
@@ -152,7 +142,7 @@ export const SeatsInMovie = () => {
                         <button style={{marginTop: 30}} className="search-buy-button" onClick={handleSelectSeats}>Select
                             Seats
                         </button>
-                        <button className="search-buy-button" onClick={handleBuyClick}>buy</button>
+                        <button className="search-buy-button" onClick={handleBuyClick}>Buy</button>
                     </div>
                 </div>
             </div>

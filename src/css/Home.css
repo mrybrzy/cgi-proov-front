@@ -7,19 +7,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Homepage styles */
 .explore {
     display: flex;
     flex-direction: column;
     position: sticky;
     align-items: center;
     justify-content: center;
-    /*background-color: #f2f2f2;*/
     width: 100%;
     overflow: hidden;
 }
 
-/* Search input styles */
 .search-input {
     width: 300px;
     padding: 5px;
@@ -35,7 +32,6 @@ body {
     }
 }
 
-/* Search button styles */
 .search-button {
     margin-left: 10px;
     background-color: #C6A477;
@@ -57,19 +53,20 @@ body {
     margin-top: 10px;
 
 }
+
 .movie-view-movie-card {
     display: flex;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: left;
-    margin-bottom: 10px; /* Add margin to separate cards vertically */
+    margin-bottom: 10px;
 }
+
 .movie-view-movie-card img {
-    /*width: 30%; !* Adjust the width of the image column *!*/
     height: 370px;
     width: 270px;
-    margin-right: 10px; /* Add space between the image and text */
+    margin-right: 10px;
 }
 
 
@@ -91,15 +88,14 @@ body {
 .explore_image {
     opacity: 1;
     display: block;
-    /*width: 300px;*/
     height: 450px;
     object-fit: cover;
     transition: .5s ease;
     backface-visibility: hidden;
-    width: 100%; /* Set the container width to 100% */
-    /*height: 100%;*/
+    width: 100%;
 
 }
+
 .search-select {
     width: 300px;
     padding: 5px;
@@ -121,8 +117,8 @@ body {
 
 .movies_container {
     display: flex;
-    width: 100%; /* Set the container width to 100% */
-    height: 100%; /* Set the container height to 100% of the parent (carousel-viewport) */
+    width: 100%;
+    height: 100%;
     transition: transform 0.5s;
     margin: 2% 3% 0 0;
 }
@@ -136,12 +132,11 @@ body {
 }
 
 .explore_middle {
-    opacity
-    : 0;
+    opacity: 0;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center the middle content vertically and horizontally */
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -153,7 +148,6 @@ body {
     cursor: pointer;
     width: 300px;
     height: 30px;
-    /*margin-right: 75px; !* Set a dynamic margin based on screen size *!*/
     border-radius: 6px;
     transition: background-color 0.3s;
 
@@ -169,17 +163,17 @@ body {
 
 @media screen and (max-width: 1600px) {
     .movies_container {
-        flex-wrap: wrap; /* Allow items to wrap to the next line */
-        justify-content: center; /* Center items horizontally */
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .container {
-        flex: 0 0 calc(25% - 20px); /* Four items in a row, adjust as needed */
-        margin: 10px; /* Add some spacing between items */
+        flex: 0 0 calc(25% - 20px);
+        margin: 10px;
     }
 
     .explore_movie button {
-        margin-right: 0; /* Remove the margin for smaller screens */
+        margin-right: 0;
     }
 
 }
