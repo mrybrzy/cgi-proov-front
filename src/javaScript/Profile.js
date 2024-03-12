@@ -14,7 +14,6 @@ export const Profile = () => {
         const username = localStorage.getItem("username");
 
         if (username) {
-            // Fetch user data
             fetch(`/user/${username}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -24,7 +23,6 @@ export const Profile = () => {
                 .then((data) => setUserData(data))
                 .catch((error) => console.error('Error fetching user data:', error));
 
-            // Fetch bookings data
             fetch(`/bookings/${username}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

@@ -14,6 +14,7 @@
     height: 35px;
     width: 35px;
 }
+
 .buy-button {
     margin-left: 10px;
     background-color: #C6A477;
@@ -26,24 +27,21 @@
     width: 100px;
 }
 
-/* Style for booked seats */
 .button.booked {
     background-color: red;
     cursor: not-allowed;
 
 }
 
-/* Style for available seats */
 .button.available {
     background-color: green;
     cursor: pointer;
 }
-.button.clicked, button.selected {
-    background-color: rgba(255, 196, 0, 0.66); /* Clicked seat color (yellow) */
-}
-/* Seats.css */
 
-/* Style for the input element */
+.button.clicked, button.selected {
+    background-color: rgba(255, 196, 0, 0.66);
+}
+
 input {
     padding: 8px;
     font-size: 14px;
@@ -84,6 +82,7 @@ input {
     margin-top: 10px;
     color: #050505;
 }
+
 .label {
     font-weight: bold;
     margin-right: 5px;
@@ -114,12 +113,14 @@ input {
     margin-right: 50px;
 
 }
+
 .select-seats {
     align-items: end;
     margin-left: 70px;
     margin-top: 10px;
 
 }
+
 .search-buy-button {
     margin-left: 10px;
     margin-top: 10px;

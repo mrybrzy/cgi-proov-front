@@ -1,25 +1,16 @@
 import '../css/Header.css';
 import React from 'react';
 
-import homeIcon from '../icons/home.png'; // Import the image using require
-import contactIcon from '../icons/contact.png'; // Import the image using require
-import userIcon from '../icons/user.png'; // Import the image using require
-import searchIcon from '../icons/search.png'; // Import the image using require
-import menuIcon from '../icons/menu.png'; // Import the image using require
+import userIcon from '../icons/user.png';
+import searchIcon from '../icons/search.png';
+import menuIcon from '../icons/menu.png';
 import { useNavigate } from "react-router-dom";
 
 
 
 export const Header = () => {
     const navigate = useNavigate();
-    // const handleHomeClick = () => {
-    //     navigate("/");
-    // }
-    // const handleContactClick = () => {
-    //     navigate("/contacts");
-    // }
     const handleLoginClick = () => {
-        console.log(localStorage.getItem("token"))
         if (localStorage.getItem("token")) {
             navigate("/profile")
         } else {
@@ -33,7 +24,7 @@ export const Header = () => {
         <header className="header">
             <div className="menu-button">
                 <button className="icon-button">
-                    <img src={menuIcon} alt="Menu" /> {/* Use the imported image */}
+                    <img src={menuIcon} alt="Menu" />
                 </button>
                 <div className="menu-content">
                     <button className="icon-button-menu" onClick={handleLoginClick}>

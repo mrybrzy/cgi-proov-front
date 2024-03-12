@@ -1,4 +1,3 @@
-/* Header container styles */
 .header {
     display: flex;
     justify-content: space-between;
@@ -6,25 +5,22 @@
     padding: 10px 0;
     width: 100%;
     height: 50px;
-    background-color: #7097A8; /* Replace with your desired background color */
+    background-color: #7097A8;
 }
 
-/* Heading styles */
 .header-heading {
     text-align: center;
-    color: #fff; /* Change the text color to your preference */
+    color: #fff;
     margin: 0 40px 0 40px;
 }
 
-/* Header buttons container styles */
 .header-buttons {
     display: flex;
     gap: 10px;
-    align-items: center; /* Center buttons vertically */
-    margin: 0 0 0 0; /* Push the buttons to the right */
+    align-items: center;
+    margin: 0 0 0 0;
 }
 
-/* Header button styles */
 .icon-button-header {
     background: none;
     border: none;
@@ -38,7 +34,6 @@
     height: auto;
 }
 
-/* Menu button and menu content styles (hidden by default) */
 .menu-button {
     display: none;
 }
@@ -49,8 +44,8 @@
     cursor: pointer;
     margin-right: 10px;
     display: flex;
-    flex-direction: column; /* Display text under icons */
-    align-items: center; /* Center text and icon vertically */
+    flex-direction: column;
+    align-items: center;
 }
 
 .icon-button img {
@@ -59,18 +54,16 @@
     margin-left: 20px;
 }
 
-/* Adjust text size and spacing under menu buttons */
 .icon-button span {
-    font-size: 14px; /* Adjust the font size to your preference */
-    margin-top: 5px; /* Increase the spacing between icon and text */
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-/* Icon button menu content styles */
 .menu-content {
     position: absolute;
     top: 50px;
     left: 10px;
-    background-color: #7097A8; /* Replace with your desired background color */
+    background-color: #7097A8;
     padding: 20px 20px;
     flex-direction: column;
     align-items: flex-start;
@@ -79,7 +72,6 @@
     display: none;
 }
 
-/* Icon button menu button styles */
 .icon-button-menu {
     background: none;
     border: none;
@@ -88,7 +80,7 @@
     align-items: center;
     padding: 10px 10px;
     font-size: 20px;
-    color: #fff; /* Change the text color to your preference */
+    color: #fff;
 }
 
 .icon-button-menu img {
@@ -97,7 +89,6 @@
     height: auto;
 }
 
-/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
     .header-buttons {
         display: none;
@@ -107,7 +98,6 @@
         display: flex;
     }
 
-    /* Show the menu content when hovering over the icon button */
     .menu-button:hover .menu-content {
         display: flex;
     }

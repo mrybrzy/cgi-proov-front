@@ -7,7 +7,6 @@ import {Header} from "./Header";
 
 export const Home = () => {
     const [data, setData] = useState([]);
-    const [movieName, setMovieName] = useState("");
     const [genre, setGenre] = useState([]);
     const [age, setAge] = useState("");
     const [startTime, setStartTime] = useState("");
@@ -29,10 +28,7 @@ export const Home = () => {
 
     const handleRecommendation = () => {
         const username = localStorage.getItem("username");
-        console.log("username")
-        console.log(username)
         if (username) {
-            // Fetch user data
             fetch(`/recommendation/${username}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -41,13 +37,7 @@ export const Home = () => {
                 .then((response) => response.json())
                 .then((data) => setRecommendation(data))
                 .catch((error) => console.error('Error fetching user data:', error));
-            console.log(movieRecommendation)
-            if (Array.isArray(movieRecommendation) && movieRecommendation.length === 0) {
-                movieRecommendation = "uuu";
-            }
-
         }
-
     }
 
     const searchForMovie = () => {
@@ -65,7 +55,6 @@ export const Home = () => {
         if (typeof language === 'string' && language.trim() !== "") {
             url += `/language/${language.trim()}`;
         }
-        console.log(url)
         axios.get(url)
             .then((result) => {
                 if (Array.isArray(result.data) && result.data.length > 0) {
@@ -80,12 +69,9 @@ export const Home = () => {
     };
 
     const handleGenreChange = (selectedGenre) => {
-        // Check if the genre is already selected
         if (genre.includes(selectedGenre)) {
-            // If selected, remove it from the array
             setGenre((prevGenre) => prevGenre.filter((g) => g !== selectedGenre));
         } else {
-            // If not selected, add it to the array
             setGenre((prevGenre) => [...prevGenre, selectedGenre]);
         }
     };
@@ -142,7 +128,6 @@ export const Home = () => {
                 <button className="search-button" onClick={searchForMovie}>
                     Search
                 </button>
-                {/* Replace the existing genre select with the following */}
                 <div className="dropdown-container">
 
                     <div id="genre-dropdown" className="dropdown-content">
@@ -180,7 +165,6 @@ export const Home = () => {
                                     <p><span className="label">Price:</span> {movie.price}</p>
                                     <p style={{marginTop: 40}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
-                                    {/* Display recommendation only if there's booking information */}
                                     {movieRecommendation[index] && (
                                         <h3 style={{marginTop: 30}}><span className="label">Recommendation</span>{movieRecommendation[index]}%</h3>
                                     )}
@@ -190,8 +174,6 @@ export const Home = () => {
                     ))}
                 </div>
             </div>
-
-
         </div>
     );
 };
