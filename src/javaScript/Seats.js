@@ -152,7 +152,7 @@ export const SeatsInMovie = () => {
                         <button style={{marginTop: 30}} className="search-buy-button" onClick={handleSelectSeats}>Select
                             Seats
                         </button>
-                        <button className="search-buy-button" onClick={handleBuyClick}>buy</button>
+                        <button className="search-buy-button" onClick={handleBuyClick}>Buy</button>
                     </div>
                 </div>
             </div>

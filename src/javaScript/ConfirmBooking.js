@@ -24,6 +24,7 @@ export const ConfirmBooking = () => {
     };
 
     const handleBookingSave = async () => {
+
         console.log(seatId)
         await axios.post('/book', {
             "client": client,
@@ -79,7 +80,7 @@ export const ConfirmBooking = () => {
                     </div>
                 </div>
                 <div className="buttons">
-                    <button className="confirm-book-button" onClick={handleBookingSave}>Confirm booking</button>
+                    <button className="confirm-book-button" onClick={handleBookingSave}>Confirm tickets</button>
                     <button className="confirm-book-button" onClick={handleCancel}>Cancel</button>
                 </div>
                 {/*</div>*/}

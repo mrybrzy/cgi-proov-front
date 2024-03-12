@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Header } from './Header';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Header} from './Header';
+import {useNavigate} from 'react-router-dom';
 import '../css/Profile.css';
 
 export const Profile = () => {
@@ -13,27 +13,31 @@ export const Profile = () => {
     useEffect(() => {
         const username = localStorage.getItem("username");
 
-        // Fetch user data
-        fetch(`/user/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-            .then((response) => response.json())
-            .then((data) => setUserData(data))
-            .catch((error) => console.error('Error fetching user data:', error));
-        console.log(userData)
+        if (username) {
+            // Fetch user data
+            fetch(`/user/${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+                .then((response) => response.json())
+                .then((data) => setUserData(data))
+                .catch((error) => console.error('Error fetching user data:', error));
 
-        // Fetch bookings data
-        fetch(`/bookings/${username}`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-            .then((response) => response.json())
-            .then((data) => setBookings(data))
-            .catch((error) => console.error('Error fetching bookings data:', error));
+            // Fetch bookings data
+            fetch(`/bookings/${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+                .then((response) => response.json())
+                .then((data) => setBookings(data))
+                .catch((error) => console.error('Error fetching bookings data:', error));
+
+            console.log(userData);
+        }
     }, []);
+
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -47,7 +51,7 @@ export const Profile = () => {
                 acc[bookings[index].movieId] = data;
                 return acc;
             }, {});
-            
+
 
             setMovieDetails(movieDetailsObj);
         };
@@ -60,12 +64,12 @@ export const Profile = () => {
     const handleLogout = () => {
         localStorage.clear();
         console.log('Logout clicked');
-        navigate('/home');
+        navigate('/');
     };
 
     return (
         <div>
-            <Header />
+            <Header/>
             <div className="profile">
                 <button className="logout-btn" onClick={handleLogout}>
                     LOGOUT
@@ -73,22 +77,31 @@ export const Profile = () => {
                 <div className="profile-info">
                     <h2>Welcome, {userData.name}!</h2>
                     <p>Email: {userData.username}</p>
-                    <img src={"https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.jpg"} alt="Profile" />
+                    <img
+                        src={"https://cdn.vectorstock.com/i/preview-1x/15/40/blank-profile-picture-image-holder-with-a-crown-vector-42411540.jpg"}
+                        alt="Profile"/>
                 </div>
                 <div className="booking-container">
-                    <h3 style={{marginLeft: 75}}>Your Bookings</h3>
+                    <h3 style={{marginLeft: 75}}>Your upcoming screenings</h3>
                     {bookings.map((booking) => (
                         <div key={booking.id} className="booking-card">
                             <div className="movie-view-container">
                                 <div className="movie-view-image-seats">
-                                    <img src={movieDetails[booking.movieId]?.image} alt={movieDetails[booking.movieId]?.movie_name}/>
+                                    <img src={movieDetails[booking.movieId]?.image}
+                                         alt={movieDetails[booking.movieId]?.movie_name}/>
                                 </div>
                                 <div className="movie-info" style={{marginLeft: 10}}>
                                     <p><span className="label">Genre:</span> {movieDetails[booking.movieId]?.genre}</p>
-                                    <p><span className="label">Age Limit:</span> {movieDetails[booking.movieId]?.ageLimit}</p>
-                                    <p><span className="label">Language:</span> {movieDetails[booking.movieId]?.language}</p>
-                                    <p><span className="label">Start Time:</span> {movieDetails[booking.movieId]?.startTime}</p>
-                                    <p><span className="label">Run Time:</span> {movieDetails[booking.movieId]?.runTime}</p>
+                                    <p><span
+                                        className="label">Age Limit:</span> {movieDetails[booking.movieId]?.ageLimit}
+                                    </p>
+                                    <p><span
+                                        className="label">Language:</span> {movieDetails[booking.movieId]?.language}</p>
+                                    <p><span
+                                        className="label">Start Time:</span> {movieDetails[booking.movieId]?.startTime}
+                                    </p>
+                                    <p><span className="label">Run Time:</span> {movieDetails[booking.movieId]?.runTime}
+                                    </p>
                                     <p><span className="label">Price:</span> {booking.price}</p>
                                     <p><span className="label">Seats:</span> {booking.seatsId}</p>
                                     <p style={{marginTop: 40}}><span className="label">Description</span></p>
