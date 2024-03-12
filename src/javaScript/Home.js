@@ -12,7 +12,6 @@ export const Home = () => {
     const [startTime, setStartTime] = useState("");
     const [language, setLanguage] = useState("");
     const navigate = useNavigate();
-    let [movieRecommendation, setRecommendation] = useState([])
 
     useEffect(() => {
         axios.get("/public/home")
@@ -34,9 +33,7 @@ export const Home = () => {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             })
-                .then((response) => response.json())
-                .then((data) => setRecommendation(data))
-                .catch((error) => console.error('Error fetching user data:', error));
+
         }
     }
 
@@ -66,6 +63,7 @@ export const Home = () => {
             .catch((error) => {
                 console.log(error);
             });
+        handleRecommendation()
     };
 
     const handleGenreChange = (selectedGenre) => {
@@ -165,9 +163,9 @@ export const Home = () => {
                                     <p><span className="label">Price:</span> {movie.price}</p>
                                     <p style={{marginTop: 40}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
-                                    {movieRecommendation[index] && (
-                                        <h3 style={{marginTop: 30}}><span className="label">Recommendation</span>{movieRecommendation[index]}%</h3>
-                                    )}
+
+                                    <h3 style={{marginTop: 30}}><span className="label">Recommendation:</span>{movie.recommendation}%</h3>
+
                                 </div>
                             </div>
                         </div>
