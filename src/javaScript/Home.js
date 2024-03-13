@@ -22,8 +22,12 @@ export const Home = () => {
             .catch((error) => {
                 console.log(error);
             });
+        axios.get(`/public/rating`).then((result) => {
+        });
         handleRecommendation();
     }, []);
+
+
 
     const handleRecommendation = () => {
         const username = localStorage.getItem("username");
@@ -63,7 +67,6 @@ export const Home = () => {
             .catch((error) => {
                 console.log(error);
             });
-        handleRecommendation()
     };
 
     const handleGenreChange = (selectedGenre) => {
@@ -161,10 +164,21 @@ export const Home = () => {
                                     <p><span className="label">Start Time:</span> {movie.startTime}</p>
                                     <p><span className="label">Run Time:</span> {movie.runTime}</p>
                                     <p><span className="label">Price:</span> {movie.price}</p>
-                                    <p style={{marginTop: 40}}><span className="label">Description</span></p>
+                                    <p style={{marginTop: 20}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
-
-                                    <h3 style={{marginTop: 30}}><span className="label">Recommendation:</span>{movie.recommendation}%</h3>
+                                    <h3 style={{marginTop: 20}}><span className="label">Recommendation:</span>{movie.recommendation}%</h3>
+                                    <p><span className="label">IMDb rating:</span>{movie.rating}</p>
+                                    {[...Array(10.0)].map((_, index) => (
+                                        <span
+                                            key={index}
+                                            className="label"
+                                            style={{
+                                                cursor: 'pointer',
+                                                color: index < movie.rating ? 'gold' : 'gray',
+                                            }}
+                                        >
+                                                &#9733;
+                                                </span>))}
 
                                 </div>
                             </div>

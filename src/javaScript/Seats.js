@@ -12,6 +12,7 @@ export const SeatsInMovie = () => {
     const [seatQuantity, setSeatQuantity] = useState(1);
     const navigate = useNavigate();
     let [seatPrice, setSeatPrice] = useState(7)
+    const [rating, setRating] = useState([])
 
     useEffect(() => {
         axios.get(`/public/movie/${movieId}`).then((result) => {
@@ -101,8 +102,20 @@ export const SeatsInMovie = () => {
                             <p><span className="label">Start Time:</span> {movieData.startTime}</p>
                             <p><span className="label">Run Time:</span> {movieData.runTime}</p>
                             <p><span className="label">Price:</span> {seatPrice}</p>
-                            <p style={{marginTop: 80}}><span className="label">Description</span></p>
+                            <p style={{marginTop: 20}}><span className="label">Description</span></p>
                             <p>{movieData.description}</p>
+                            <p><span className="label">IMDb rating:</span>{movieData.rating}</p>
+                            {[...Array(10.0)].map((_, index) => (
+                                <span
+                                    key={index}
+                                    className="label"
+                                    style={{
+                                        cursor: 'pointer',
+                                        color: index < movieData.rating ? 'gold' : 'gray',
+                                    }}
+                                >
+                                                &#9733;
+                                                </span>))}
                         </>
                     )}
                 </div>
