@@ -13,6 +13,9 @@ export const Home = () => {
     const [language, setLanguage] = useState("");
     const navigate = useNavigate();
 
+    /**
+     * Get all movies from database, update ratings using API, handle recommendations in case if user is logged in
+     */
     useEffect(() => {
         axios.get("/public/home")
             .then((result) => {
@@ -28,7 +31,10 @@ export const Home = () => {
     }, []);
 
 
-
+    /**
+     * Handle recommendations.
+     * If user is logged send request to calculate recommendations
+     */
     const handleRecommendation = () => {
         const username = localStorage.getItem("username");
         if (username) {
@@ -41,6 +47,10 @@ export const Home = () => {
         }
     }
 
+    /**
+     * Search for movie using filters.
+     * Depending on the filters that user chooses to search for movie, the correct request is sent to the backend.
+     */
     const searchForMovie = () => {
         let url = `/public/search`;
 
@@ -69,6 +79,11 @@ export const Home = () => {
             });
     };
 
+    /**
+     * Handle selected genres.
+     * If genre input is changed, change selected genres for further use.
+     * @param selectedGenre genre that was selected by user
+     */
     const handleGenreChange = (selectedGenre) => {
         if (genre.includes(selectedGenre)) {
             setGenre((prevGenre) => prevGenre.filter((g) => g !== selectedGenre));
@@ -77,6 +92,11 @@ export const Home = () => {
         }
     };
 
+    /**
+     * Handle movie click.
+     * If certain movie is clicked, redirect user to the movie page.
+     * @param movie movie that was clicked
+     */
     const handleMovieClick = (movie) => {
         navigate(`/movie/${movie.movieId}`);
     };
@@ -132,7 +152,7 @@ export const Home = () => {
                 <div className="dropdown-container">
 
                     <div id="genre-dropdown" className="dropdown-content">
-                        {['action', 'comedy', 'drama', "thriller", "romance", "fantasy", "adventure"].map((g) => (
+                        {['action', 'comedy', 'drama', "thriller", "romance", "fantasy", "adventure", "horror"].map((g) => (
                             <label key={g}>
 
                                 <input
@@ -166,7 +186,8 @@ export const Home = () => {
                                     <p><span className="label">Price:</span> {movie.price}</p>
                                     <p style={{marginTop: 20}}><span className="label">Description</span></p>
                                     <p>{movie.description}</p>
-                                    <h3 style={{marginTop: 20}}><span className="label">Recommendation:</span>{movie.recommendation}%</h3>
+                                    <h3 style={{marginTop: 20}}><span
+                                        className="label">Recommendation:</span>{movie.recommendation}%</h3>
                                     <p><span className="label">IMDb rating:</span>{movie.rating}</p>
                                     {[...Array(10.0)].map((_, index) => (
                                         <span

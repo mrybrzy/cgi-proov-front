@@ -14,6 +14,9 @@ export const ConfirmBooking = () => {
     const seatId = localStorage.getItem("seats");
     const price = localStorage.getItem("price");
 
+    /**
+     * Get movie by id to shoe its information for user to book.
+     */
     const getMovieById = async () => {
         try {
             const response = await axios.get(`/public/movie/${movieId}`);
@@ -23,6 +26,9 @@ export const ConfirmBooking = () => {
         }
     };
 
+    /**
+     * Save booking to database and navigate to profile.
+     */
     const handleBookingSave = async () => {
         await axios.post('/book', {
             "client": client,
@@ -43,9 +49,13 @@ export const ConfirmBooking = () => {
         })
     };
 
+    /**
+     * Cancel movie booking and navigate to seats choosing.
+     */
     const handleCancel = () => {
         navigate(`/movie/${movieId}`);
     };
+
 
     useEffect(() => {
         getMovieById();
