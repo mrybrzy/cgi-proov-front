@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../css/Register.css';
 import axios from "axios";
+import {Header} from "./Header";
 
 export const Register = () => {
     const [name, setName] = useState('');
@@ -10,23 +11,46 @@ export const Register = () => {
     const [repeatPassword, setRepeatPassword] = useState('');
     const navigate = useNavigate();
 
+    /**
+     * Handle name input change.
+     * Assign as the new value.
+     * @param event name input change.
+     */
     const handleFirstNameChange = (event) => {
         setName(event.target.value);
     };
 
-
+    /**
+     * Handle email input change.
+     * Assign as the new value.
+     * @param event email input change.
+     */
     const handleEmailChange = (event) => {
         setUsername(event.target.value);
     };
 
+    /**
+     * Handle password input change.
+     * Assign as the new value.
+     * @param event password input change.
+     */
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
 
+    /**
+     * Handle repeated password input change.
+     * Assign as the new value.
+     * @param event repeated password input change.
+     */
     const handleRepeatPasswordChange = (event) => {
         setRepeatPassword(event.target.value);
     };
 
+    /**
+     * Register user.
+     * Redirect to the login page.
+     */
     const handleRegister = async () => {
 
         await axios.post('/public/register', {
@@ -44,15 +68,22 @@ export const Register = () => {
     };
 
 
-    const handleSignUpClick = () => {
+    /**
+     * Handle sign in click.
+     * Redirect user to sign in page.
+     */
+    const handleSignInClick = () => {
         navigate("/login")
     };
 
     return (
         <div className="register-container">
+            <Header/>
             <div className="register-frame-container">
                 <div className="left-column">
-                    <img src="https://img.freepik.com/premium-photo/red-white-paper-popcorn-bucket-cinema-snack-isolated-white-background-ai-generated_921479-26349.jpg" alt="Registration" className="register-image" />
+                    <img
+                        src="https://img.freepik.com/premium-photo/red-white-paper-popcorn-bucket-cinema-snack-isolated-white-background-ai-generated_921479-26349.jpg"
+                        alt="Registration" className="register-image"/>
                 </div>
                 <div className="right-column">
 
@@ -102,7 +133,7 @@ export const Register = () => {
                             </button>
                         </form>
                         <p>
-                            Already a member? <span onClick={handleSignUpClick} className="link-style">Log in</span>
+                            Already a member? <span onClick={handleSignInClick} className="link-style">Log in</span>
                         </p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Header} from './Header';
 import {useNavigate} from 'react-router-dom';
 import '../css/Profile.css';
+import axios from "axios";
 
 export const Profile = () => {
     const navigate = useNavigate();
@@ -10,6 +11,9 @@ export const Profile = () => {
     const [movieDetails, setMovieDetails] = useState({});
 
 
+    /**
+     * Get user info and bookings by username.
+     */
     useEffect(() => {
         const username = localStorage.getItem("username");
 
@@ -34,9 +38,27 @@ export const Profile = () => {
 
             console.log(userData);
         }
+        handleRecommendation()
     }, []);
 
 
+    /**
+     * Update recommendations in case new booking was made.
+     */
+    const handleRecommendation = () => {
+        const username = localStorage.getItem("username");
+        if (username) {
+            fetch(`/recommendation/${username}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            })
+
+        }
+    }
+    /**
+     * Get bookings data to display.
+     */
     useEffect(() => {
         const fetchDetails = async () => {
             const moviePromises = bookings.map((booking) =>
@@ -59,10 +81,15 @@ export const Profile = () => {
         }
     }, [bookings]);
 
+    /**
+     * Handle log out.
+     * Redirect to the login page.
+     */
     const handleLogout = () => {
         localStorage.clear();
+        axios.get(`/public/recommendation`)
         console.log('Logout clicked');
-        navigate('/');
+        navigate('/login');
     };
 
     return (

@@ -12,8 +12,11 @@ export const SeatsInMovie = () => {
     const [seatQuantity, setSeatQuantity] = useState(1);
     const navigate = useNavigate();
     let [seatPrice, setSeatPrice] = useState(7)
-    const [rating, setRating] = useState([])
 
+    /**
+     * Get movie data by its id.
+     * Get seats by movie id.
+     */
     useEffect(() => {
         axios.get(`/public/movie/${movieId}`).then((result) => {
             setMovieData(result.data);
@@ -25,14 +28,23 @@ export const SeatsInMovie = () => {
 
     }, [movieId]);
 
-
+    // default number of seats in one row
     const seatsPerRow = 10;
 
+    // Show seats by rows containing 10 seats per row.
     const rows = Array.from({length: seatsData.length / seatsPerRow}, (_, rowIndex) =>
         seatsData.slice(rowIndex * seatsPerRow, (rowIndex + 1) * seatsPerRow)
     );
+    // Calculate amount of available seats
     const availableSeatsQuantity = seatsData.filter(seat => !seat.isBooked).length;
 
+    /**
+     * Handle seat click.
+     * If seats are not selected by backend, seat can not be chosen.
+     * If Seats are selected by backend, user can unselect recommended seat and chose a new one.
+     * More seats that selected can not be chosen.
+     * @param seat selected seat.
+     */
     const handleSeatClick = (seat) => {
         if (!seat.isBooked) {
             const isSeatClicked = selectedSeats.includes(seat.seatNumber);
@@ -47,6 +59,12 @@ export const SeatsInMovie = () => {
         }
     };
 
+    /**
+     * Handle buying tickets click.
+     * If user is logged in, save movie, seats and price data, redirect to the confirm page.
+     * Else, redirect to login page, info is not saved.
+     * @param movie
+     */
     const handleBuyClick = (movie) => {
         if (localStorage.getItem('token')) {
             localStorage.setItem("movieId", movieId);
@@ -57,11 +75,20 @@ export const SeatsInMovie = () => {
             navigate('/login');
         }
     }
+    /**
+     * Handle seat quantity change.
+     * Save info of how much seats can be selected at once.
+     * @param newValue value of how many seats can be selected.
+     */
     const handleSeatQuantityChange = (newValue) => {
         const newQuantity = Math.max(1, Math.min(availableSeatsQuantity, newValue));
         setSeatQuantity(newQuantity);
     };
 
+    /**
+     * Get seats selected.
+     * When quantity of wanted seats is chosen, send movie id and seat quantity to backend to receive best seats.
+     */
     const handleSelectSeats = () => {
         axios.get(`/public/movie/${movieId}/${seatQuantity}`, {seatQuantity, movieId})
             .then(response => {
@@ -76,6 +103,10 @@ export const SeatsInMovie = () => {
 
     };
 
+    /**
+     * Handle price change.
+     * Change price in the movie description, depending on the quantity of wanted seats.
+     */
     const handlePriceChange = () => {
         axios.get(`/public/price/${seatQuantity}`).then((result) => {
             setSeatPrice(result.data);
